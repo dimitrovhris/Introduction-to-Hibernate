@@ -14,7 +14,7 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    text-shadow: -1px 0 2px black, 0 1px 2px black, 1px 0 2px black, 0 -1px 2px black;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -27,7 +27,7 @@ body {
 }
 
 .myBackgroundColor {
-    background-color: #8f1dc2;
+    background-color: #016e93;
 }
 
 .jumbotron-background {
@@ -83,27 +83,27 @@ body > header > nav > a > img{
 }
 
 .btn-primary {
-    box-shadow: 0 0 0 1px #571475 inset, 0 0 0 2px rgba(255, 255, 255, 0.15) inset, 0 8px 0 0 #67138c, 0 8px 0 1px rgba(0, 0, 0, 0.4), 0 8px 8px 1px rgba(0, 0, 0, 0.5);
-    background-color: #8f1dc2;
-    border-color: #880ebe;
+    box-shadow: 0 0 0 1px #046e04 inset, 0 0 0 2px rgba(255, 255, 255, 0.15) inset, 0 8px 0 0 #425d42, 0 8px 0 1px rgba(0, 0, 0, 0.4), 0 8px 8px 1px rgba(0, 0, 0, 0.5);
+    background-color: #618560;
+    border-color: #527352;
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
     color: #fff;
-    background-color: #ad4ee3;
-    border-color: #580382; /*set the color you want here*/
+    background-color: #73b371;
+    border-color: #078404; /*set the color you want here*/
 }
 
 .btn-primary:active, btn-primary:focus {
-    background-color: #67138c !important;
+    background-color: #71c06f !important;
 }
 
 .btn-primary:not(:disabled):not(.disabled).active:focus,.btn-primary:not(:disabled):not(.disabled):active:focus,.show>.btn-primary.dropdown-toggle:focus {
-    box-shadow: 0 0 0 .2rem rgb(167 0 255 / 50%)
+    box-shadow: 0 0 0 .2rem rgb(43 213 40 / 50%)
 }
 
 .btn-primary.focus,.btn-primary:focus {
-    box-shadow: 0 0 0 .2rem rgb(158 2 199 / 50%)
+    box-shadow: 0 0 0 .2rem rgb(43 213 40 / 50%)
 }
 
 .btn-success {

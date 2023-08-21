@@ -30,31 +30,31 @@ public class TestDbPrimaryKeys {
     void testPrimaryKeys() throws SQLException {
         DatabaseMetaData metaData = getDatabaseMetaData();
 
-        ResultSet primaryKeyAstronomers = metaData.getPrimaryKeys(null, null, "ASTRONOMERS");
-        ResultSet primaryKeyConstellations = metaData.getPrimaryKeys(null, null, "CONSTELLATIONS");
-        ResultSet primaryKeyStars = metaData.getPrimaryKeys(null, null, "STARS");
+        ResultSet primaryKeyBooks = metaData.getPrimaryKeys(null, null, "BOOKS");
+        ResultSet primaryKeyBorrowingRecords = metaData.getPrimaryKeys(null, null, "BORROWING_RECORDS");
+        ResultSet primaryKeyLibraryMembers = metaData.getPrimaryKeys(null, null, "LIBRARY_MEMBERS");
 
         List<String> actualResult = new ArrayList<>();
 
-        primaryKeyAstronomers.next();
-        actualResult.add(primaryKeyAstronomers.getString("TABLE_NAME"));
-        actualResult.add(primaryKeyAstronomers.getString("COLUMN_NAME"));
+        primaryKeyBooks.next();
+        actualResult.add(primaryKeyBooks.getString("TABLE_NAME"));
+        actualResult.add(primaryKeyBooks.getString("COLUMN_NAME"));
 
-        primaryKeyConstellations.next();
-        actualResult.add(primaryKeyConstellations.getString("TABLE_NAME"));
-        actualResult.add(primaryKeyConstellations.getString("COLUMN_NAME"));
+        primaryKeyBorrowingRecords.next();
+        actualResult.add(primaryKeyBorrowingRecords.getString("TABLE_NAME"));
+        actualResult.add(primaryKeyBorrowingRecords.getString("COLUMN_NAME"));
 
-        primaryKeyStars.next();
-        actualResult.add(primaryKeyStars.getString("TABLE_NAME"));
-        actualResult.add(primaryKeyStars.getString("COLUMN_NAME"));
+        primaryKeyLibraryMembers.next();
+        actualResult.add(primaryKeyLibraryMembers.getString("TABLE_NAME"));
+        actualResult.add(primaryKeyLibraryMembers.getString("COLUMN_NAME"));
 
         List<String> expectedResult = new ArrayList<>();
 
-        expectedResult.add("ASTRONOMERS");
+        expectedResult.add("BOOKS");
         expectedResult.add("ID");
-        expectedResult.add("CONSTELLATIONS");
+        expectedResult.add("BORROWING_RECORDS");
         expectedResult.add("ID");
-        expectedResult.add("STARS");
+        expectedResult.add("LIBRARY_MEMBERS");
         expectedResult.add("ID");
 
         Assertions.assertArrayEquals(expectedResult.stream().sorted().toArray(), actualResult.stream().sorted().toArray());

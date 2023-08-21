@@ -4,31 +4,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
-import softuni.exam.service.AstronomerService;
-import softuni.exam.service.ConstellationService;
-import softuni.exam.service.StarService;
+import softuni.exam.service.BorrowingRecordsService;
+import softuni.exam.service.BookService;
+import softuni.exam.service.LibraryMemberService;
 
 @Controller
 public class HomeController extends BaseController {
 
-    private final StarService starService;
-    private final AstronomerService astronomerService;
-    private final ConstellationService constellationService;
+    private final LibraryMemberService libraryMemberService;
+    private final BorrowingRecordsService borrowingRecordsService;
+    private final BookService bookService;
 
     @Autowired
-    public HomeController(StarService starService,ConstellationService constellationService,AstronomerService astronomerService) {
-        this.starService = starService;
-        this.astronomerService = astronomerService;
-        this.constellationService = constellationService;
+    public HomeController(LibraryMemberService libraryMemberService, BookService bookService, BorrowingRecordsService borrowingRecordsService) {
+        this.libraryMemberService = libraryMemberService;
+        this.borrowingRecordsService = borrowingRecordsService;
+        this.bookService = bookService;
     }
 
 
     @GetMapping("/")
     public ModelAndView index() {
-        boolean areImported = this.starService.areImported() &&
-                this.constellationService.areImported() &&
-                this.starService.areImported()  &&
-                this.astronomerService.areImported();
+        boolean areImported = this.libraryMemberService.areImported() &&
+                this.bookService.areImported() &&
+                this.libraryMemberService.areImported()  &&
+                this.borrowingRecordsService.areImported();
 
         return super.view("index", "areImported", areImported);
     }

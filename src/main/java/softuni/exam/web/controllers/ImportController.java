@@ -6,27 +6,26 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import softuni.exam.service.AstronomerService;
-import softuni.exam.service.ConstellationService;
-import softuni.exam.service.StarService;
+import softuni.exam.service.BorrowingRecordsService;
+import softuni.exam.service.BookService;
+import softuni.exam.service.LibraryMemberService;
 
 import javax.xml.bind.JAXBException;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 @Controller
 @RequestMapping("/import")
 public class ImportController extends BaseController {
 
-    private final StarService starService;
-    private final AstronomerService astronomerService;
-    private final ConstellationService constellationService;
+    private final LibraryMemberService libraryMemberService;
+    private final BorrowingRecordsService borrowingRecordsService;
+    private final BookService bookService;
 
     @Autowired
-    public ImportController(StarService starService, ConstellationService constellationService,AstronomerService astronomerService) {
-        this.starService = starService;
-        this.astronomerService = astronomerService;
-        this.constellationService = constellationService;
+    public ImportController(LibraryMemberService libraryMemberService, BookService bookService, BorrowingRecordsService borrowingRecordsService) {
+        this.libraryMemberService = libraryMemberService;
+        this.borrowingRecordsService = borrowingRecordsService;
+        this.bookService = bookService;
     }
 
 
@@ -34,8 +33,8 @@ public class ImportController extends BaseController {
     public ModelAndView importJson() {
 
         boolean[] areImported = new boolean[]{
-                this.constellationService.areImported(),
-                this.starService.areImported()
+                this.bookService.areImported(),
+                this.libraryMemberService.areImported()
         };
 
         return super.view("json/import-json", "areImported", areImported);
@@ -45,50 +44,51 @@ public class ImportController extends BaseController {
     @GetMapping("/xml")
     public ModelAndView importXml() {
         boolean[] areImported = new boolean[]{
-                this.astronomerService.areImported()
+                this.borrowingRecordsService.areImported()
         };
 
         return super.view("xml/import-xml", "areImported", areImported);
     }
 
 
-    @GetMapping("/astronomers")
-    public ModelAndView importAstronomers() throws IOException {
-        String astronomersXmlFileContent = this.astronomerService.readAstronomersFromFile();
+    @GetMapping("/borrowing-records")
+    public ModelAndView importBorrowingRecords() throws IOException {
+        String fileContent = this.borrowingRecordsService.readBorrowingRecordsFromFile();
 
-        return super.view("xml/import-astronomers", "astronomers", astronomersXmlFileContent);
+        return super.view("xml/import-borrowing-records", "borrowingRecords", fileContent);
     }
 
-    @PostMapping("/astronomers")
-    public ModelAndView importAstronomersConfirm() throws JAXBException, IOException {
-        System.out.println(this.astronomerService.importAstronomers());
+    @PostMapping("/borrowing-records")
+    public ModelAndView importBorrowingRecordsConfirm() throws JAXBException, IOException {
+        System.out.println(this.borrowingRecordsService.importBorrowingRecords());
 
         return super.redirect("/import/xml");
     }
 
-    @GetMapping("/constellations")
-    public ModelAndView importConstellations() throws IOException {
-        String fileContent = this.constellationService.readConstellationsFromFile();
 
-        return super.view("json/import-constellations", "constellations", fileContent);
+    @GetMapping("/books")
+    public ModelAndView importBooks() throws IOException {
+        String fileContent = this.bookService.readBooksFromFile();
+
+        return super.view("json/import-books", "books", fileContent);
     }
 
-    @PostMapping("/constellations")
-    public ModelAndView importConstellationsConfirm() throws IOException {
-        System.out.println(this.constellationService.importConstellations());
+    @PostMapping("/books")
+    public ModelAndView importBooksConfirm() throws IOException {
+        System.out.println(this.bookService.importBooks());
         return super.redirect("/import/json");
     }
 
-    @GetMapping("/stars")
-    public ModelAndView importStars() throws IOException {
-        String fileContent = this.starService.readStarsFileContent();
+    @GetMapping("/library-members")
+    public ModelAndView importLibraryMembers() throws IOException {
+        String fileContent = this.libraryMemberService.readLibraryMembersFileContent();
 
-        return super.view("json/import-stars", "stars", fileContent);
+        return super.view("json/import-library-members", "libraryMembers", fileContent);
     }
 
-    @PostMapping("/stars")
-    public ModelAndView importStarsConfirm() throws IOException, JAXBException {
-        System.out.println(this.starService.importStars());
+    @PostMapping("/library-members")
+    public ModelAndView importLibraryMembersConfirm() throws IOException {
+        System.out.println(this.libraryMemberService.importLibraryMembers());
         return super.redirect("/import/json");
     }
 }

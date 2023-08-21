@@ -19,4 +19,3 @@ public class XmlParser {
         return (T) unmarshaller.unmarshal(fileReader);
     }
 }
-

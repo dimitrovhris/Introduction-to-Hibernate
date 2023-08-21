@@ -31,9 +31,9 @@ public class TestDbTablesNames {
         DatabaseMetaData metaData = getDatabaseMetaData();
 
         List<String> expectedResult = new ArrayList<>();
-        expectedResult.add("ASTRONOMERS");
-        expectedResult.add("CONSTELLATIONS");
-        expectedResult.add("STARS");
+        expectedResult.add("BOOKS");
+        expectedResult.add("BORROWING_RECORDS");
+        expectedResult.add("LIBRARY_MEMBERS");
 
         ResultSet tables = metaData.getTables(null, "PUBLIC", null, null);
 

@@ -33,21 +33,23 @@ public class TestDbColumnNames {
         List<String> expectedResult = new ArrayList<>();
 
         expectedResult.add("ID");
-        expectedResult.add("AVERAGE_OBSERVATION_HOURS");
-        expectedResult.add("BIRTHDAY");
+        expectedResult.add("AUTHOR");
+        expectedResult.add("AVAILABLE");
+        expectedResult.add("DESCRIPTION");
+        expectedResult.add("GENRE");
+        expectedResult.add("RATING");
+        expectedResult.add("TITLE");
+        expectedResult.add("ID");
+        expectedResult.add("BORROW_DATE");
+        expectedResult.add("REMARKS");
+        expectedResult.add("RETURN_DATE");
+        expectedResult.add("BOOK_ID");
+        expectedResult.add("MEMBER_ID");
+        expectedResult.add("ID");
+        expectedResult.add("ADDRESS");
         expectedResult.add("FIRST_NAME");
         expectedResult.add("LAST_NAME");
-        expectedResult.add("SALARY");
-        expectedResult.add("OBSERVING_STAR_ID");
-        expectedResult.add("ID");
-        expectedResult.add("DESCRIPTION");
-        expectedResult.add("NAME");
-        expectedResult.add("ID");
-        expectedResult.add("DESCRIPTION");
-        expectedResult.add("LIGHT_YEARS");
-        expectedResult.add("NAME");
-        expectedResult.add("STAR_TYPE");
-        expectedResult.add("CONSTELLATION_ID");
+        expectedResult.add("PHONE_NUMBER");
 
         ResultSet columns1 = metaData.getColumns(null, "PUBLIC", null, null);
 

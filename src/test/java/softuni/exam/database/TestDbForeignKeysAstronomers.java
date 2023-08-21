@@ -29,32 +29,21 @@ public class TestDbForeignKeysAstronomers {
     void testForeignKeysAstronomers() throws SQLException {
         DatabaseMetaData metaData = getDatabaseMetaData();
 
-        ResultSet astronomersKeys = metaData.getImportedKeys(null, null, "ASTRONOMERS");
-        ResultSet starsKeys = metaData.getImportedKeys(null, null, "STARS");
+        ResultSet borowingRecordsKeys = metaData.getImportedKeys(null, null, "BORROWING_RECORDS");
 
         List<String> actualResult = new ArrayList<>();
 
-        astronomersKeys.next();
-        actualResult.add(astronomersKeys.getString("PKTABLE_NAME"));
-        actualResult.add(astronomersKeys.getString("FKTABLE_NAME"));
-        actualResult.add(astronomersKeys.getString("PKCOLUMN_NAME"));
-        actualResult.add(astronomersKeys.getString("FKCOLUMN_NAME"));
-
-        starsKeys.next();
-        actualResult.add(starsKeys.getString("PKTABLE_NAME"));
-        actualResult.add(starsKeys.getString("FKTABLE_NAME"));
-        actualResult.add(starsKeys.getString("PKCOLUMN_NAME"));
-        actualResult.add(starsKeys.getString("FKCOLUMN_NAME"));
+        borowingRecordsKeys.next();
+        actualResult.add(borowingRecordsKeys.getString("PKTABLE_NAME"));
+        actualResult.add(borowingRecordsKeys.getString("FKTABLE_NAME"));
+        actualResult.add(borowingRecordsKeys.getString("PKCOLUMN_NAME"));
+        actualResult.add(borowingRecordsKeys.getString("FKCOLUMN_NAME"));
 
         List<String> expectedResult = new ArrayList<>();
-        expectedResult.add("STARS");
-        expectedResult.add("ASTRONOMERS");
+        expectedResult.add("BOOKS");
+        expectedResult.add("BORROWING_RECORDS");
         expectedResult.add("ID");
-        expectedResult.add("OBSERVING_STAR_ID");
-        expectedResult.add("CONSTELLATIONS");
-        expectedResult.add("STARS");
-        expectedResult.add("ID");
-        expectedResult.add("CONSTELLATION_ID");
+        expectedResult.add("BOOK_ID");
 
         Assertions.assertArrayEquals(expectedResult.stream().sorted().toArray(), actualResult.stream().sorted().toArray());
     }

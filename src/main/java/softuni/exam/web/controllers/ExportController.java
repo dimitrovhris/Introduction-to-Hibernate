@@ -5,24 +5,29 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import softuni.exam.service.StarService;
+import softuni.exam.service.BorrowingRecordsService;
+import softuni.exam.service.LibraryMemberService;
 
 @Controller
 @RequestMapping("/export")
 public class ExportController extends BaseController {
 
-    private final StarService starService;
+    private final LibraryMemberService libraryMemberService;
+    private final BorrowingRecordsService borrowingRecordsService;
+
 
     @Autowired
-    public ExportController(StarService starService) {
-        this.starService = starService;
+    public ExportController(LibraryMemberService libraryMemberService,
+                            BorrowingRecordsService borrowingRecordsService) {
+        this.libraryMemberService = libraryMemberService;
+        this.borrowingRecordsService = borrowingRecordsService;
     }
 
 
-    @GetMapping("/red-giant-stars")
+    @GetMapping("/borrowing-records")
     public ModelAndView exportNonObservedStarsByDistanceAsc() {
-        String exportedStars = this.starService.exportStars();
+        String exportedBorrowingRecords = borrowingRecordsService.exportBorrowingRecords();
 
-        return super.view("export/export-red-giant-stars.html", "exportedStars", exportedStars);
+        return super.view("export/export-borrowing-records.html", "exportedBorrowingRecords", exportedBorrowingRecords);
     }
 }

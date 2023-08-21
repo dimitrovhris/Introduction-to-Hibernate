@@ -11,10 +11,10 @@
                 </div>
                 <div class="col-md-12 d-flex justify-content-center">
                     <th:block th:if="${areImported[0] == false}">
-                        <a class="btn btn-primary mx-5 my-5"th:href="@{/import/constellations}">Import Constellation</a>
+                        <a class="btn btn-primary mx-5 my-5"th:href="@{/import/books}">Import Books</a>
                     </th:block>
                     <th:block th:if="${areImported[1] == false}">
-                        <a class="btn btn-primary mx-5 my-5"th:href="@{/import/stars}">Import Stars</a>
+                        <a class="btn btn-primary mx-5 my-5"th:href="@{/import/library-members}">Import Library Members</a>
                     </th:block>
                     <th:block th:if="${areImported[0] == true && areImported[1] == true} ">
                         <p class="myBackgroundColor">All JSON files are imported.</p>
